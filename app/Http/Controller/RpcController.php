@@ -4,6 +4,7 @@
 namespace App\Http\Controller;
 
 use App\Rpc\Lib\UserInterface;
+use App\Rpc\Lib\PayInterface;
 use Swoft\Bean\Annotation\Mapping\Bean;
 use Swoft\Http\Server\Annotation\Mapping\Controller;
 use Swoft\Http\Server\Annotation\Mapping\RequestMapping;
@@ -34,6 +35,13 @@ class RpcController
     private $userService2;
 
     /**
+     * @Reference(pool="pay.pool")
+     *
+     * @var PayInterface
+     */
+    private $payService;
+
+    /**
      * @RequestMapping("getList")
      *
      * @return array
@@ -43,8 +51,9 @@ class RpcController
         //swoft还没有实现远程调用（封装）
         $result  = $this->userService->getList(12, 'type');
         $result2 = $this->userService2->getList(12, 'type');
+        $payResult = $this->payService->pay();
 
-        return [$result, $result2];
+        return [$result, $result2, $payResult];
     }
 
     /**
