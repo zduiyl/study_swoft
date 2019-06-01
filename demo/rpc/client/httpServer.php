@@ -8,13 +8,10 @@ $http->set([
 
 //监听http协议
 $http->on('request',function ($request,$response){
-
     $response->header('Content-Type','text/html');
     $response->header('Charset','utf-8');
     $server=$request->server;
     $path_info=$server['path_info'];
-
-
     if($path_info=='/favicon.ico'){
         return;
     }
@@ -34,7 +31,6 @@ $http->on('request',function ($request,$response){
     //方法
     $method=(isset($path_info[3]) && !empty($path_info[1]))?$path_info[3]:'index';
 
-    var_dump($model,$controller,$method);
     //结合错误处理
     try{
         $class_name="\\{$model}\\controller\\{$controller}";

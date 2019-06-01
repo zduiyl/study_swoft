@@ -7,7 +7,6 @@
  */
 
 $server=new Swoole\Server('0.0.0.0',9508);
-
 $server->set([
     'worker_num'=>1, //设置进程
     //'heartbeat_idle_time'=>10,//连接最大的空闲时间
@@ -26,9 +25,9 @@ $server->on('receive',function (swoole_server $server, int $fd, int $reactor_id,
        $serviceName=$data['serviceName'];
        $method=$data['method'];
        var_dump($serviceName,$method);
-
        //加载文件返回数据(作业)
-       // include  "";
+
+       //include  "";
        $server->send($fd,"123456");
 });
 

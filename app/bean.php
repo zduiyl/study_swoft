@@ -47,8 +47,9 @@ return [
         'database' => 0,
     ],
     'client'       => [
-        'class'   => ServiceClient::class,
+        'class'   => \App\Rpc\Client\Client::class,
         'host'    => '127.0.0.1',
+        'serviceName'=>'user',
         'port'    => 9508,
         'setting' => [
             'timeout'         => 0.5,
@@ -59,9 +60,10 @@ return [
         'packet'  => \bean('rpcClientPacket')
     ],
     'pay'       => [
-        'class'   => App\Rpc\Client\Client::class,
-        'host'    => '127.0.0.1',
-        'port'    => 9508,
+        'class'   =>\App\Rpc\Client\Client::class,
+        'host'    => '118.24.109.254',
+        'serviceName'=>'pay',
+        'port'    => 9502,
         'setting' => [
             'timeout'         => 0.5,
             'connect_timeout' => 1.0,
@@ -75,7 +77,6 @@ return [
         'class'  => ServicePool::class,
         'client' => \bean('client')
     ],
-    //连接池
     'pay.pool'  => [
         'class'  => ServicePool::class,
         'client' => \bean('pay')
@@ -83,6 +84,10 @@ return [
     'rpcServer'  => [
         'class' => ServiceServer::class,
         'port'     => 9508
+
+    ],
+    'consulProvider'=>[
+        'class'=>\App\Components\Consul\ConsulProvider::class
     ],
     'wsServer'   => [
         'class'   => WebSocketServer::class,
@@ -95,5 +100,6 @@ return [
         'setting' => [
             'log_file' => alias('@runtime/swoole.log'),
         ],
-    ],
+    ]
+
 ];

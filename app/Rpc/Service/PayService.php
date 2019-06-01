@@ -5,6 +5,7 @@ namespace App\Rpc\Service;
 
 
 use App\Rpc\Lib\PayInterface;
+use App\Rpc\Lib\UserInterface;
 use Swoft\Co;
 use Swoft\Rpc\Server\Annotation\Mapping\Service;
 
@@ -26,6 +27,7 @@ class PayService implements PayInterface
      */
     public function pay(): array
     {
-        return ['result' => ['ok']];
+        return ['result' => ['ok123']];
     }
+
 }

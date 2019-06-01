@@ -10,7 +10,9 @@ namespace App\Rpc\Lib;
  */
 interface PayInterface
 {
-
+    /**
+     * @return array
+     */
     public function pay(): array;
 
 }

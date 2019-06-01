@@ -35,7 +35,6 @@ class  RpcClient
             exit("connect failed. Error: {$client->errCode}\n");
         }
         $client->send($data);
-
         echo $client->recv();
         $client->close();
 
